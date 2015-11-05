@@ -13,9 +13,7 @@ Requires:       gdb
 Requires:       cpio
 Requires:       patchelf
 Requires:       rpm-build
-Requires:       dnf
-Requires:       dnf-plugins-core
-Requires:       python3-dnf
+Requires:       yum
 
 %description
 An xdg-app sdk for the fedora runtime
