@@ -1,0 +1,6 @@
+[local]
+name=local
+baseurl=file://@CWD@/rpms/RPMS/noarch
+enabled=1
+metadata_expire=0s
+cost=800

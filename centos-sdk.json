@@ -1,0 +1,5 @@
+{
+    "ref": "base/org.centos.Sdk/x86_64/7",
+    "include": "centos-runtime.json",
+    "packages": ["centos-sdk"]
+}

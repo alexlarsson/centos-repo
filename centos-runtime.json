@@ -1,0 +1,26 @@
+{
+    "ref": "base/org.centos.Platform/x86_64/7",
+
+    "repos": ["base", "updates", "local"],
+
+    "selinux": false,
+
+    "documentation": false,
+
+    "container": true,
+
+    "automatic_version_prefix": "7",
+
+    "install-langs": ["en_US"],
+
+    "postprocess-script": "treecompose-post.sh",
+
+    "etc-group-members": ["wheel"],
+
+    "ignore-removed-users": ["root"],
+    "ignore-removed-groups": ["root"],
+    "check-passwd": { "type": "file", "filename": "passwd" },
+    "check-groups": { "type": "file", "filename": "group" },
+
+    "packages": ["centos-runtime" ]
+}

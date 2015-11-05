@@ -1,0 +1,8 @@
+[Runtime]
+name=org.centos.Sdk/x86_64/7
+runtime=org.centos.Platform/x86_64/7
+sdk=org.centos.Sdk/x86_64/7
+
+[Environment]
+LD_LIBRARY_PATH=/app/lib64
+GI_TYPELIB_PATH=/app/lib64/girepository-1.0
