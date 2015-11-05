@@ -11,7 +11,7 @@ repo/config:
 exportrepo/config:
 	ostree init --repo=exportrepo --mode=archive-z2
 
-local.repo: local.repo.in
+%.repo: %.repo.in
 	sed -e "s|\@CWD\@|`pwd`|"  $< > $@
 
 # base rpms
@@ -30,11 +30,11 @@ rpms/RPMS/noarch/centos-sdk-$(VERSION)-$(REVISION).el7.noarch.rpm: specfiles/cen
 rpms/RPMS/noarch/repodata/repomd.xml: rpms/RPMS/noarch/centos-runtime-$(VERSION)-$(REVISION).el7.noarch.rpm rpms/RPMS/noarch/centos-sdk-$(VERSION)-$(REVISION).el7.noarch.rpm
 	createrepo rpms/RPMS/noarch
 
-repo/refs/heads/base/org.centos.Platform/$(ARCH)/$(VERSION): repo/config local.repo centos-runtime.json treecompose-post.sh group passwd rpms/RPMS/noarch/repodata/repomd.xml
+repo/refs/heads/base/org.centos.Platform/$(ARCH)/$(VERSION): repo/config CentOS-Base.repo local.repo centos-runtime.json treecompose-post.sh group passwd rpms/RPMS/noarch/repodata/repomd.xml
 	sudo rpm-ostree compose tree --force-nocache $(PROXY) --repo=repo centos-runtime.json
 	sudo chown -R `whoami` repo
 
-repo/refs/heads/base/org.centos.Sdk/$(ARCH)/$(VERSION): repo/config local.repo centos-sdk.json centos-runtime.json treecompose-post.sh group passwd rpms/RPMS/noarch/repodata/repomd.xml
+repo/refs/heads/base/org.centos.Sdk/$(ARCH)/$(VERSION): repo/config CentOS-Base.repo local.repo centos-sdk.json centos-runtime.json treecompose-post.sh group passwd rpms/RPMS/noarch/repodata/repomd.xml
 	sudo rpm-ostree compose tree --force-nocache $(PROXY) --repo=repo centos-sdk.json
 	sudo chown -R `whoami` repo
 
@@ -67,4 +67,4 @@ platform: exportrepo/refs/heads/runtime/org.centos.Platform/$(ARCH)/$(VERSION) e
 sdk: exportrepo/refs/heads/runtime/org.centos.Sdk/$(ARCH)/$(VERSION) exportrepo/refs/heads/runtime/org.centos.Sdk.Var/$(ARCH)/$(VERSION)
 
 clean:
-	rm -rf repo exportrepo .commit-*
+	rm -rf repo exportrepo rpms CentOS-Base.repo local.repo
