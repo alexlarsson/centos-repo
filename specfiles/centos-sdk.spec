@@ -11,7 +11,6 @@ Requires:       valgrind
 Requires:       strace
 Requires:       gdb
 Requires:       cpio
-Requires:       patchelf
 Requires:       rpm-build
 Requires:       yum
 
